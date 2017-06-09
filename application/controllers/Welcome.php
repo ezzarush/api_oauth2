@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
+	function __construct(){
+        @session_start();
+        parent::__construct();
+        $this->load->library("Server", "server");
+    }
+	
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,6 +26,22 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		// $this->load->view('welcome_message');
+		
+		// { grant_type: "password", username: "user", password: "pass", client_id: 'testclient', client_secret:'testpass', scope:'userinfo cloud file node' }
+		$data = array(
+		);
+		
+		$this->kodok();
+	}
+	
+	public function kodok(){
+		$grant_type="password";
+		$username="user";
+		$password="pass";
+		$client_id="testclient";
+		$client_secret="testpass";
+		$scope="userinfo cloud file node";
+		$this->server->client_credentials();
 	}
 }
