@@ -25,28 +25,39 @@ class Welcome extends REST_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index_get()
+	public function insert_get()
 	{
 		// echo $this->get('ea');
 		
+		$id = $this->get('id');
+		$ket = $this->get('ket');
+		
 		$data = array(
-			'201'=>'success',
-			'info'=>$this->get('kata')
+			'id'	=>$id,
+			'ket'	=>$ket
 		);
 		
+		$sql = "INSERT INTO  db_test.dbo.contoh (id,ket) VALUES ($id,'$ket')";
+		
+		$insert = $this->db->query($sql);
+		
+		if($insert){
+			$data = array(
+				'code'		=> 201,
+				'pesan'		=> 'Berhasil'
+			);
+		}else{
+			$data = array(
+				'code'		=> 201,
+				'pesan'		=> 'Berhasil'
+			);
+		}
 		$this->response($data);
-		// $this->load->view('welcome_message');
 		
-		// { grant_type: "password", username: "user", password: "pass", client_id: 'testclient', client_secret:'testpass', scope:'userinfo cloud file node' }
-		$data = array(
-		);
-		// $data2 = $this->db->get('contoh')->result_array();
-		// print_r($data2);
-		// $this->kodok();
 	}
 	
-	public function insert_post(){
-		
+	public function tampil(){
+echo 'ea';
 	}
 	
 	public function kodok(){
