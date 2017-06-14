@@ -27,19 +27,52 @@ class Welcome extends REST_Controller {
 	 */
 	public function insert_get()
 	{
-		// echo $this->get('ea');
 		
-		$id = $this->get('id');
-		$ket = $this->get('ket');
+		$id 				= 1;
+		$journalnum 		= $this->get('journalnum');
+		$accounttype		= $this->get('accounttype');
+		$account			= $this->get('account');
+		$company			= $this->get('company');
+		$debit				= $this->get('debit');
+		$currency			= $this->get('currency');
+		$exchrate			= $this->get('exchrate');
+		$department			= $this->get('department');
+		$costcenter			= $this->get('costcenter');
+		$purpose			= $this->get('purpose');
+		$voucher			= $this->get('voucher');
+		$credit				= $this->get('credit');
+		$date				= $this->get('date');
+		$transactiontype	= $this->get('transactiontype');
 		
 		$data = array(
-			'id'	=>$id,
-			'ket'	=>$ket
+			'journalnum'		=> $journalnum,
+			'accounttype'		=> $accounttype,
+			'account'			=> $account,
+			'company'			=> $company,
+			'debit'				=> $debit,
+			'currency'			=> $currency,
+			'exchrate'			=> $exchrate,
+			'department'		=> $department,
+			'costcenter'		=> $costcenter,
+			'purpose'			=> $purpose,
+			'voucher'			=> $voucher,
+			'credit'			=> $credit,
+			'date'				=> $date,
+			'transactiontype'	=> $transactiontype
 		);
 		
-		$sql = "INSERT INTO  db_test.dbo.contoh (id,ket) VALUES ($id,'$ket')";
+		$sql = "INSERT INTO  db_test.dbo.api (journalnum,accounttype,account,company,debit,currency,exchrate,department,costcenter,purpose,voucher,credit,date,transactiontype) 
+		VALUES ('$journalnum','$accounttype','$account','$company','$debit','$currency','$exchrate','$department','$costcenter','$purpose','$voucher','$credit','$date','$transactiontype')";
+		
+		// $sql = "INSERT INTO  db_test.dbo.api (journalnum,accounttype,account,text,debit,currency,exchrate,department,costcenter,purpose,voucher,credit,date,transactiontype) 
+		// VALUES ('$journalnum','$accounttype','$account','$text','$debit','$currency','$exchrate','$department','$costcenter','$purpose','$voucher','$credit','$date','$transactiontype')";
+		
+		// echo $sql;die;
+		// $sql = "INSERT INTO  db_test.dbo.contoh (id,ket) VALUES ($id,'$ket')";
 		
 		$insert = $this->db->query($sql);
+		
+		// $insert = $this->db->insert('db_test.dbo.contoh',$data);
 		
 		if($insert){
 			$data = array(
