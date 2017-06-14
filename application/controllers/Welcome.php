@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require APPPATH . '/libraries/REST_Controller.php';
 
-class Welcome extends CI_Controller {
+class Welcome extends REST_Controller {
 
 	function __construct(){
         @session_start();
@@ -31,8 +32,9 @@ class Welcome extends CI_Controller {
 		// { grant_type: "password", username: "user", password: "pass", client_id: 'testclient', client_secret:'testpass', scope:'userinfo cloud file node' }
 		$data = array(
 		);
-		
-		$this->kodok();
+		// $data2 = $this->db->get('contoh')->result_array();
+		// print_r($data2);
+		// $this->kodok();
 	}
 	
 	public function kodok(){
