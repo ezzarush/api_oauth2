@@ -61,7 +61,7 @@ class Welcome extends REST_Controller {
 			'transactiontype'	=> $transactiontype
 		);
 		
-		$sql = "INSERT INTO  db_test.dbo.api (journalnum,accounttype,account,company,debit,currency,exchrate,department,costcenter,purpose,voucher,credit,date,transactiontype) 
+		$sql = "INSERT INTO  db_api.dbo.api (journalnum,accounttype,account,company,debit,currency,exchrate,department,costcenter,purpose,voucher,credit,date,transactiontype) 
 		VALUES ('$journalnum','$accounttype','$account','$company','$debit','$currency','$exchrate','$department','$costcenter','$purpose','$voucher','$credit','$date','$transactiontype')";
 		
 		// $sql = "INSERT INTO  db_test.dbo.api (journalnum,accounttype,account,text,debit,currency,exchrate,department,costcenter,purpose,voucher,credit,date,transactiontype) 
