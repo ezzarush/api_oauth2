@@ -25,8 +25,16 @@ class Welcome extends REST_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	public function index_get()
 	{
+		// echo $this->get('ea');
+		
+		$data = array(
+			'201'=>'success',
+			'info'=>$this->get('kata')
+		);
+		
+		$this->response($data);
 		// $this->load->view('welcome_message');
 		
 		// { grant_type: "password", username: "user", password: "pass", client_id: 'testclient', client_secret:'testpass', scope:'userinfo cloud file node' }
@@ -35,6 +43,10 @@ class Welcome extends REST_Controller {
 		// $data2 = $this->db->get('contoh')->result_array();
 		// print_r($data2);
 		// $this->kodok();
+	}
+	
+	public function insert_post(){
+		
 	}
 	
 	public function kodok(){
