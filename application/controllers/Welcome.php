@@ -22,20 +22,20 @@ class Welcome extends REST_Controller {
 	{
 		
 		$id 				= 1;
-		$journalnum 		= $this->get('journalnum');
-		$accounttype		= $this->get('accounttype');
-		$account			= $this->get('account');
-		$company			= $this->get('company');
-		$debit				= $this->get('debit');
-		$currency			= $this->get('currency');
-		$exchrate			= $this->get('exchrate');
-		$department			= $this->get('department');
-		$costcenter			= $this->get('costcenter');
-		$purpose			= $this->get('purpose');
-		$voucher			= $this->get('voucher');
-		$credit				= $this->get('credit');
-		$date				= $this->get('date');
-		$transactiontype	= $this->get('transactiontype');
+		$journalnum 		= $this->post('journalnum');
+		$accounttype		= $this->post('accounttype');
+		$account			= $this->post('account');
+		$company			= $this->post('company');
+		$debit				= $this->post('debit');
+		$currency			= $this->post('currency');
+		$exchrate			= $this->post('exchrate');
+		$department			= $this->post('department');
+		$costcenter			= $this->post('costcenter');
+		$purpose			= $this->post('purpose');
+		$voucher			= $this->post('voucher');
+		$credit				= $this->post('credit');
+		$date				= $this->post('date');
+		$transactiontype	= $this->post('transactiontype');
 		
 		$data = array(
 			'journalnum'		=> $journalnum,
