@@ -10,13 +10,13 @@ class Welcome extends REST_Controller {
         $this->load->library("Server", "server");
     }
 	
-	// public function index_get(){
-		// echo '#########################################<br/>';
-		// echo 'Codeigniter API OAuth2 Integrated Systems V1.1<br/>';
-		// echo '#########################################';
-		// date_default_timezone_set("Asia/Jakarta");
-		// echo '<h5>'.date('Y-m-d H:m:s').' ('.date_default_timezone_get().')</h5><br/>';
-	// }
+	public function index_get(){
+		echo '#########################################<br/>';
+		echo 'Codeigniter API OAuth2 Integrated Systems V1.1<br/>';
+		echo '#########################################';
+		date_default_timezone_set("Asia/Jakarta");
+		echo '<h5>'.date('Y-m-d H:m:s').' ('.date_default_timezone_get().')</h5><br/>';
+	}
 	
 	public function insert()
 	{
