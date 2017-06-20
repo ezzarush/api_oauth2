@@ -10,21 +10,14 @@ class Welcome extends REST_Controller {
         $this->load->library("Server", "server");
     }
 	
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
+	public function index_get(){
+		echo '#########################################<br/>';
+		echo 'Codeigniter API OAuth2 Integrated Systems V1.1<br/>';
+		echo '#########################################';
+		date_default_timezone_set("Asia/Jakarta");
+		echo '<h5>'.date('Y-m-d H:m:s').' ('.date_default_timezone_get().')</h5><br/>';
+	}
+	
 	public function insert_get()
 	{
 		
