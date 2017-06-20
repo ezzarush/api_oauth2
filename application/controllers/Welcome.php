@@ -18,7 +18,7 @@ class Welcome extends REST_Controller {
 		echo '<h5>'.date('Y-m-d H:m:s').' ('.date_default_timezone_get().')</h5><br/>';
 	}
 	
-	public function insert_get()
+	public function insert()
 	{
 		
 		$id 				= 1;
@@ -76,7 +76,7 @@ class Welcome extends REST_Controller {
 		
 	}
 	
-	public function tampil_post($access_token=null){
+	public function validate_post($access_token=null){
 		//untuk fitur auto refresh
 		$auto_refresh_token = true;
 		
@@ -89,6 +89,9 @@ class Welcome extends REST_Controller {
 		if(isset($token)){
 			$x = json_decode($this->check_access_token($token));
 			if(!isset($x->error)){
+				
+				$this->insert();
+				
 				$x->access_token = $token;
 				$this->response($x);
 			}else{
