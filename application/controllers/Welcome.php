@@ -22,7 +22,7 @@ class Welcome extends REST_Controller {
 	{
 		
 		$id 				= 1;
-		$journalnum 		= 123123;//$this->get('journalnum');
+		$journalnum 		= $this->get('journalnum');
 		$accounttype		= $this->get('accounttype');
 		$account			= $this->get('account');
 		$company			= $this->get('company');
