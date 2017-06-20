@@ -64,12 +64,6 @@ class Welcome extends REST_Controller {
 		$sql = "INSERT INTO  db_api.dbo.api (journalnum,accounttype,account,company,debit,currency,exchrate,department,costcenter,purpose,voucher,credit,date,transactiontype) 
 		VALUES ('$journalnum','$accounttype','$account','$company','$debit','$currency','$exchrate','$department','$costcenter','$purpose','$voucher','$credit','$date','$transactiontype')";
 		
-		// $sql = "INSERT INTO  db_test.dbo.api (journalnum,accounttype,account,text,debit,currency,exchrate,department,costcenter,purpose,voucher,credit,date,transactiontype) 
-		// VALUES ('$journalnum','$accounttype','$account','$text','$debit','$currency','$exchrate','$department','$costcenter','$purpose','$voucher','$credit','$date','$transactiontype')";
-		
-		// echo $sql;die;
-		// $sql = "INSERT INTO  db_test.dbo.contoh (id,ket) VALUES ($id,'$ket')";
-		
 		$insert = $this->db->query($sql);
 		
 		// $insert = $this->db->insert('db_test.dbo.contoh',$data);
@@ -89,17 +83,29 @@ class Welcome extends REST_Controller {
 		
 	}
 	
-	public function tampil(){
-echo 'ea';
+	public function tampil_get(){
+		$token = $this->get('token');
+		$x = json_decode($this->check_access_token($token));
+		if(!isset($x->error)){
+			$this->response($x);
+		}else{
+			$this->response($x);
+		}
+		
+		// print_r($this->check_access_token($token)['asdf']);// json_decode($this->check_access_token($token));
 	}
 	
-	public function kodok(){
-		$grant_type="password";
-		$username="user";
-		$password="pass";
-		$client_id="testclient";
-		$client_secret="testpass";
-		$scope="userinfo cloud file node";
-		$this->server->client_credentials();
+	public function check_access_token($param){
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL,base_url('resource_token'));
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,"access_token=$param");
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$server_output = curl_exec ($ch);
+		curl_close ($ch);
+		return $server_output;
+		// echo json_encode($server_output);
+		// $this->response($server_output);
 	}
 }
