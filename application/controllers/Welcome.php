@@ -83,13 +83,31 @@ class Welcome extends REST_Controller {
 		
 	}
 	
-	public function tampil_get(){
-		$token = $this->get('token');
-		$x = json_decode($this->check_access_token($token));
-		if(!isset($x->error)){
-			$this->response($x);
+	public function tampil_post($access_token=null){
+		//untuk fitur auto refresh
+		$auto_refresh_token = true;
+		
+		if($access_token==null){
+			$token = $this->post('token');
 		}else{
-			$this->response($x);
+			$token = $access_token;
+		}
+		
+		if(isset($token)){
+			$x = json_decode($this->check_access_token($token));
+			if(!isset($x->error)){
+				$x->access_token = $token;
+				$this->response($x);
+			}else{
+				if($auto_refresh_token){
+					$access_token = json_decode(json_decode($this->get_access_token()));
+					$x->access_token = $access_token->access_token;
+					$this->tampil_post($access_token->access_token);
+				}
+				$this->response($x);
+			}
+		}else{
+			$this->response(array('error'=>'invalid_get_token','error_description'=>'Unidentified GET Token'));
 		}
 		
 		// print_r($this->check_access_token($token)['asdf']);// json_decode($this->check_access_token($token));
@@ -105,7 +123,18 @@ class Welcome extends REST_Controller {
 		$server_output = curl_exec ($ch);
 		curl_close ($ch);
 		return $server_output;
-		// echo json_encode($server_output);
-		// $this->response($server_output);
 	}
+	
+	public function get_access_token(){
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL,base_url('token/get_token'));
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,"client_id=testclient&client_secret=testpass");
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$server_output = curl_exec ($ch);
+		curl_close ($ch);
+		return $server_output;
+	}
+	
 }

@@ -10,10 +10,13 @@ class Token extends CI_Controller {
     }
 	
 	public function get_token(){
+		$client_id		= $this->input->post('client_id');
+		$client_secret	= $this->input->post('client_secret');
+		
 		$post = [
 			'grant_type'	=> 'client_credentials',
-			'client_id' 	=> 'testclient',
-			'client_secret'	=> 'testpass',
+			'client_id' 	=> $client_id,
+			'client_secret'	=> $client_secret,
 			'scope' 		=> 'userinfo cloud file node'
 		];
 		$ch = curl_init(base_url('token/token'));
@@ -21,9 +24,7 @@ class Token extends CI_Controller {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 		$response = curl_exec($ch);
 		curl_close($ch);
-		// var_dump($response);
 		echo json_encode($response);	
-		// $this->response($server_output);
 	}
 	
 	public function token(){
