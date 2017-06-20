@@ -55,10 +55,8 @@ class Welcome extends REST_Controller {
 		);
 		
 		$sql = "INSERT INTO  db_api.dbo.api (journalnum,accounttype,account,company,debit,currency,exchrate,department,costcenter,purpose,voucher,credit,date,transactiontype) VALUES ('$journalnum','$accounttype','$account','$company','$debit','$currency','$exchrate','$department','$costcenter','$purpose','$voucher','$credit','$date','$transactiontype')";
-		echo $sql;die;
-		$insert = $this->db->query($sql);
 		
-		// $insert = $this->db->insert('db_test.dbo.contoh',$data);
+		$insert = $this->db->query($sql);
 		
 		if($insert){
 			$data = array(
@@ -97,7 +95,7 @@ class Welcome extends REST_Controller {
 				if($auto_refresh_token){
 					$access_token = json_decode(json_decode($this->get_access_token()));
 					$x->access_token = $access_token->access_token;
-					$this->tampil_post($access_token->access_token);
+					$this->validate_post($access_token->access_token);
 				}
 				$this->response($x);
 			}
