@@ -10,19 +10,19 @@ class Welcome extends REST_Controller {
         $this->load->library("Server", "server");
     }
 	
-	public function index_get(){
-		echo '#########################################<br/>';
-		echo 'Codeigniter API OAuth2 Integrated Systems V1.1<br/>';
-		echo '#########################################';
-		date_default_timezone_set("Asia/Jakarta");
-		echo '<h5>'.date('Y-m-d H:m:s').' ('.date_default_timezone_get().')</h5><br/>';
-	}
+	// public function index_get(){
+		// echo '#########################################<br/>';
+		// echo 'Codeigniter API OAuth2 Integrated Systems V1.1<br/>';
+		// echo '#########################################';
+		// date_default_timezone_set("Asia/Jakarta");
+		// echo '<h5>'.date('Y-m-d H:m:s').' ('.date_default_timezone_get().')</h5><br/>';
+	// }
 	
 	public function insert()
 	{
 		
 		$id 				= 1;
-		$journalnum 		= $this->get('journalnum');
+		$journalnum 		= 123123;//$this->get('journalnum');
 		$accounttype		= $this->get('accounttype');
 		$account			= $this->get('account');
 		$company			= $this->get('company');
@@ -54,9 +54,8 @@ class Welcome extends REST_Controller {
 			'transactiontype'	=> $transactiontype
 		);
 		
-		$sql = "INSERT INTO  db_api.dbo.api (journalnum,accounttype,account,company,debit,currency,exchrate,department,costcenter,purpose,voucher,credit,date,transactiontype) 
-		VALUES ('$journalnum','$accounttype','$account','$company','$debit','$currency','$exchrate','$department','$costcenter','$purpose','$voucher','$credit','$date','$transactiontype')";
-		
+		$sql = "INSERT INTO  db_api.dbo.api (journalnum,accounttype,account,company,debit,currency,exchrate,department,costcenter,purpose,voucher,credit,date,transactiontype) VALUES ('$journalnum','$accounttype','$account','$company','$debit','$currency','$exchrate','$department','$costcenter','$purpose','$voucher','$credit','$date','$transactiontype')";
+		echo $sql;die;
 		$insert = $this->db->query($sql);
 		
 		// $insert = $this->db->insert('db_test.dbo.contoh',$data);
@@ -64,12 +63,12 @@ class Welcome extends REST_Controller {
 		if($insert){
 			$data = array(
 				'code'		=> 201,
-				'pesan'		=> 'Berhasil'
+				'pesan'		=> $sql
 			);
 		}else{
 			$data = array(
 				'code'		=> 201,
-				'pesan'		=> 'Berhasil'
+				'pesan'		=> 'Gagal'
 			);
 		}
 		$this->response($data);
