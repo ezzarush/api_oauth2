@@ -26,6 +26,7 @@ class Welcome extends REST_Controller {
 		$accounttype		= $this->post('accounttype');
 		$account			= $this->post('account');
 		$company			= $this->post('company');
+		$text				= $this->post('text');
 		$debit				= $this->post('debit');
 		$currency			= $this->post('currency');
 		$exchrate			= $this->post('exchrate');
@@ -54,7 +55,7 @@ class Welcome extends REST_Controller {
 			'transactiontype'	=> $transactiontype
 		);
 		
-		$sql = "INSERT INTO  db_api.dbo.api (journalnum,accounttype,account,company,debit,currency,exchrate,department,costcenter,purpose,voucher,credit,date,transactiontype) VALUES ('$journalnum','$accounttype','$account','$company','$debit','$currency','$exchrate','$department','$costcenter','$purpose','$voucher','$credit','$date','$transactiontype')";
+		$sql = "INSERT INTO  db_api.dbo.api (journalnum,accounttype,account,company,text,debit,currency,exchrate,department,costcenter,purpose,voucher,credit,date,transactiontype) VALUES ('$journalnum','$accounttype','$account','$company','$text','$debit','$currency','$exchrate','$department','$costcenter','$purpose','$voucher','$credit','$date','$transactiontype')";
 		
 		$insert = $this->db->query($sql);
 		
